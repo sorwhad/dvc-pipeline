@@ -1,0 +1,4 @@
+train:
+  batch_size: 128
+  lr: 0.001
+  num_epochs: 15

@@ -1,0 +1,34 @@
+schema: '2.0'
+stages:
+  download_dataset:
+    cmd: python download_dataset.py
+    deps:
+    - path: download_dataset.py
+      md5: 5cc8167c6619775be02b63b1a3dd4491
+      size: 183
+    outs:
+    - path: datasets/cifar10
+      md5: e252d2c8ba36d1ab3e21a873ab62daa3.dir
+      size: 356712185
+      nfiles: 9
+  train:
+    cmd: python train_model.py
+    deps:
+    - path: datasets/cifar10
+      md5: e252d2c8ba36d1ab3e21a873ab62daa3.dir
+      size: 356712185
+      nfiles: 9
+    - path: train_model.py
+      md5: e71afed91a76d804eeaffd5ef459f27e
+      size: 5118
+    params:
+      params.yaml:
+        train:
+          batch_size: 128
+          lr: 0.001
+          num_epochs: 15
+    outs:
+    - path: checkpoints
+      md5: e219061204ef8002a840ca8133a508bd.dir
+      size: 14739885
+      nfiles: 15

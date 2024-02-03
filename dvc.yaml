@@ -1,0 +1,16 @@
+stages:
+  download_dataset:
+    cmd: python download_dataset.py
+    deps:
+    - download_dataset.py
+    outs:
+    - datasets/cifar10
+  train:
+    cmd: python train_model.py
+    deps:
+    - datasets/cifar10
+    - train_model.py
+    params:
+    - train
+    outs:
+    - checkpoints
